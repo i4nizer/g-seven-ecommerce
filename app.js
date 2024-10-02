@@ -1,12 +1,11 @@
 const express = require('express')
 const app = express()
-const routerRoutes = require('./routes/router')
+const authenticationRoutes = require('./routes/authentication')
 
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-app.use('/', routerRoutes)
-
+app.use('/authentication', authenticationRoutes)
 
 
 const port = 3000
