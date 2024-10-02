@@ -1,0 +1,54 @@
+Home Page
+    Header
+    Hero Section
+    Product Section
+    Top Selling Section
+    News Letter Section
+    Footer
+
+
+Products
+    Header
+    Product List
+        Product Card
+            Product Image
+            Product Name
+            Product Price
+    Footer
+
+
+Product Details Page
+    Header
+    Product Variants
+        Product Name
+        Product Price
+        Product Stocks
+        Product Quantity
+        Product Description
+    Footer
+
+
+Checkout Page
+    Header
+    Checkout Form
+        Name
+        Address
+        Contact
+            Email
+            Number
+        Payment Method
+            Cash on Delivery
+            Paymongo (redirection)
+    Footer
+
+
+Cart Page
+    Header
+    Cart Item List
+        Cart Item
+            Product Image
+            Product Description
+            Product Quantity
+    Footer
+
+
