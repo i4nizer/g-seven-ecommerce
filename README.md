@@ -7,7 +7,7 @@ This is a team repository for a simple ecommerce system.
 
 ### partials styling
 > We will use vue style for files inside partials directory. (template-script-style)
-`
+```
 <!-- HTML Template -->
 <header id="header">
     <h5>Hello World</h5>
@@ -44,4 +44,4 @@ This is a team repository for a simple ecommerce system.
 }
 </style>
 <!-- CSS -->
-`
+```
