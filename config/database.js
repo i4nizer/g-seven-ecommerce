@@ -11,4 +11,4 @@ const credentials = {
 const connectDatabase = async () => await mysql2.createConnection(credentials)
 
 
-module.exports = connectDatabase
+module.exports = connectDatabase()
