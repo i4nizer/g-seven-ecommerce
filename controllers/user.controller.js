@@ -5,7 +5,7 @@ const userController = {
 
     // sign up page request
     getSignUpPage: (req, res) => {
-
+        res.render('sign-up')
         
     },
 
