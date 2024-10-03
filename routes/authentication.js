@@ -8,5 +8,4 @@ router.get('/sign-up', userController.getSignUpPage)
 router.post('/sign-up', userMiddleware.validateSignUp, userController.postSignUp)
 
 
-
 module.exports = router
