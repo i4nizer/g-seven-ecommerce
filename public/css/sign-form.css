@@ -1,0 +1,61 @@
+@import url('/css/base.css');
+@import url('/css/header.css');
+
+section {
+    width: 100%;
+    height: calc(100% - 60px);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section form {
+    width: 460px;
+    height: fit-content;
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    border: 1px solid var(--black);
+}
+
+section form sub {
+    color: var(--accent);
+    text-align: center;
+}
+
+section form h1 {
+    text-align: center;
+}
+
+section form label {
+    margin: 10px 0 0 0;
+}
+
+section form input {
+    width: calc(100% - 4dvw);
+    height: 50px;
+    padding: 0 2dvw;
+}
+
+section form button {
+    width: 100%;
+    height: 50px;
+    margin: 15px 0 0 0;
+
+    color: var(--white);
+    font-weight: bolder;
+
+    border: 1px solid var(--blue);
+    background-color: var(--blue);
+
+    transition-duration: 250ms;
+}
+
+section form button:hover {
+    color: var(--blue);
+    background-color: var(--white);
+}

@@ -1,1 +1,30 @@
-<!-- Form => action="/authentication/sign-in" method="POST" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/sign-form.css">
+    <title>Sign In</title>
+</head>
+<body>
+
+    <%- include('partials/header') %>
+
+    <section>
+        <form action="/authentication/users/sign-in" method="post">
+            <h1>Sign In</h1>
+            <sub>Please provide necessary credentials.</sub>
+        
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" minlength="3" maxlength="255" placeholder="Enter your username"
+                required>
+        
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" minlength="8" placeholder="Enter your password" required>
+        
+            <button type="submit">Sign Up</button>
+        </form>
+    </section>
+
+</body>
+</html>
