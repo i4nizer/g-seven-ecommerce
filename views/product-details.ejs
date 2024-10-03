@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/product-details.css">
+    <title>Product Deatails Page</title>
+</head>
+<body>
+    <%- include('partials/header') %>
+    <div class="container">
+        <aside class="category">
+            <h2>Category</h2>
+            <ul>
+                <li><div><a href="#">Category 1</a></div></li>
+                <li><div><a href="#">Category 2</a></div></li>
+                <li><div><a href="#">Category 3</a></div></li>
+                <li><div><a href="#">Category 4</a></div></li>
+            </ul>
+        </aside>
+
+        <div class="product-details">
+            <div class="product-image">
+                <img src="https://via.placeholder.com/300" alt="Product Image">
+            </div>
+            <div class="product-description">
+                <h3>Product Description</h3>
+                <p>Stocks: 120</p>
+                <p>Price: PHP 1,000</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="reviews">
+        <h2>Reviews</h2>
+        <div class="review-form">
+            <input type="text" id="reviewer-name" placeholder="Your name">
+            <textarea id="review-text" rows="3" placeholder="Your review"></textarea>
+            <button class="submit-review" onclick="addReview()">Submit Review</button>
+        </div>
+        <div class="review-list" id="review-list">
+        </div>
+    </section>
+
+    <script>
+        function addReview() {
+            const name = document.getElementById('reviewer-name').value;
+            const review = document.getElementById('review-text').value;
+
+            if (name && review) {
+                const reviewList = document.getElementById('review-list');
+                const reviewItem = document.createElement('div');
+                reviewItem.classList.add('review-item');
+
+                reviewItem.innerHTML = `<strong>${name}</strong><p>${review}</p>`;
+                reviewList.appendChild(reviewItem);
+
+                document.getElementById('reviewer-name').value = '';
+                document.getElementById('review-text').value = '';
+            } else {
+                alert('Please fill out both fields before submitting.');
+            }
+        }
+    </script>
+</body>
+</html>
