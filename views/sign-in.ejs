@@ -8,8 +8,6 @@
 </head>
 <body>
 
-    <%- include('partials/header') %>
-
     <section>
         <form action="/authentication/users/sign-in" method="post">
             <h1>Sign In</h1>
@@ -21,6 +19,12 @@
         
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" minlength="8" placeholder="Enter your password" required>
+
+            <label for="role">Role:</label>
+            <select name="role" id="role">
+                <option value="customer">Customer</option>
+                <option value="admin">Admin</option>
+            </select>
         
             <button type="submit">Sign Up</button>
         </form>

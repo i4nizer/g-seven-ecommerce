@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const authenticationRoutes = require('./routes/authentication')
+const authenticationRoutes = require('./routes/authentication.route')
 
 
 app.set('view engine', 'ejs')

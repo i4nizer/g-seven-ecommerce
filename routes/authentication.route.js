@@ -5,7 +5,6 @@ const userController = require('../controllers/user.controller')
 const userMiddleware = require('../middlewares/user.middleware')
 
 
-// use to parse form body (req.body) else undefined
 router.use(express.urlencoded({ extended: true }))
 router.use(express.json())
 router.use(cookieParser())

@@ -7,7 +7,7 @@ const userModel = {
      * Insert user credentials to database upon sign up.
      * 
      * @param {[username: string, email: string, password: string, firstname: string, lastname: string, phone: string, role?: string ]} values - Values to insert into the database.
-     * @returns - Result of the query.
+     * @returns - Result of query on index 0.
      */
     insert: async (values) => {
         const conn = await connection
@@ -22,7 +22,7 @@ const userModel = {
      * Get user credentials.
      * 
      * @param {string} id - Id of user to be retrieved.
-     * @returns {{ user_id: number, username: string, email: string, password: string, firstname: string, lastname: string, phone: string, role: string, created_at: Date, updated_at: Date  }[]} - An array of user objects length 1.
+     * @returns - User array on index 0.
      */
     readById: async (id) => {
         const conn = await connection
@@ -77,9 +77,9 @@ const userModel = {
         let sql = `update users set username = coalesce(?, username), email = coalesce(?, email), password = coalesce(?, password), firstname = coalesce(?, firstname), lastname = coalesce(?, lastname), phone = coalesce(?, phone), role = coalesce(?, role) where user_id = ?`;
         
         // match placeholder
-        const values = [username, email, password, firstname, lastname, phone, role]
+        const values = [username, email, password, firstname, lastname, phone, role, id]
 
-        return await conn.query(sql, [...values, id])
+        return await conn.query(sql, [values])
     },
 
 
