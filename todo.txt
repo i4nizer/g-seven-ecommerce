@@ -4,7 +4,7 @@ TO-DO [/]
 General
     [ ] views/index.ejs
         [ ] views/partials/hero-section.ejs
-        [ ] views/partials/top-selling-section.ejs
+        [ ] views/partials/products-section.ejs
         [ ] views/partials/news-letter-section.ejs
     [ ] views/products.ejs
         [ ] product list

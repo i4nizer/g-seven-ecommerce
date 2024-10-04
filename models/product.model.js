@@ -39,9 +39,9 @@ const productModel = {
      */
     readAll: async (limit = 100) => {
         const conn = await connection
-        const sql = 'select * from products limit = ?'
+        const sql = 'select * from products limit ?'
 
-        return await conn.query(sql, [limit])
+        return await conn.query(sql, [limit])   
     },
 
 

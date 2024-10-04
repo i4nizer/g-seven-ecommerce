@@ -45,7 +45,7 @@ const userController = {
 
             const payload = { username: username, role: role }
             const duration = 7 * 24 * 60 * 60
-            const token = jwt.sign(payload, process.env.SIGN_IN_SECRET_KEY, { expiresIn: duration })
+            const token = jwt.sign(payload, process.env.LOGIN_SECRET_KEY, { expiresIn: duration })
 
             // set cookie and redirect to homepage
             res.cookie('login-token', token, { maxAge: duration * 1000, httpOnly: true })

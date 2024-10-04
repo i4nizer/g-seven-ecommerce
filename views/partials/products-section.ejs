@@ -1,0 +1,44 @@
+<section id="products-section">
+    <h1>Products</h1>
+    <div class="products-box">
+        <% for (const index in products) { %>
+            <%- include('product-card', { key: index, imageUrl: products[index].image_url, name: products[index].name, price: products[index].price, cartUrl: '', buyUrl: '' }) %>
+        <% } %>
+    </div>
+</section>
+
+<style>
+    #products-section {
+        width: 100%;
+        height: fit-content;
+        padding: 20px 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        color: var(--black);
+        background-color: var(--white);
+    }
+
+    #products-section h1 {
+        width: 100%;
+        height: 60px;
+
+        font-size: 50px;
+        text-align: center;
+    }
+
+    #products-section .products-box {
+        width: calc(100% - 10dvw);
+        height: fit-content;
+        padding: 5dvw;
+
+        gap: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+</style>

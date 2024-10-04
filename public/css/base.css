@@ -1,5 +1,8 @@
 :root {
     --white: #fff;
+    --gray: #444;
+    --light-gray: #eee;
+    --light-light-gray: #fafafa;
     --black: #000;
     --yellow: #ffff00;
     --red: #f9333b ;
@@ -13,7 +16,7 @@
 
 body {
     width: 100%;
-    height: 100dvh;
+    height: auto;
 
     display: flex;
     align-items: center;
