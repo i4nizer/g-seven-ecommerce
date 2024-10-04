@@ -1,8 +1,59 @@
-<div id="news-letter-section">
-    <h1>Subscribe To Our News Letter</h1>
-    <p>Subscribe to our news letter to get latest products trends and sales.</p>
-    <form action="" method="post">
-        <input type="email" name="email" id="email">
+<section id="news-letter-section">
+    <form action="/" method="post">
+        <h1>Subscribe To Our News Letter</h1>
+        <p>Subscribe to our news letter to get latest products trends and sales.</p>
+        <input type="email" name="email" id="email" placeholder="Enter your email">
         <button type="submit">Subscribe</button>
     </form>
-</div>
+</section>
+
+
+<style>
+#news-letter-section {
+    width: calc(100% - 10dvw);
+    height: fit-content;
+    padding: 5dvw;
+
+    background-color: var(--light-gray);
+}
+
+#news-letter-section form {
+    width: 100%;
+    height: auto;
+
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#news-letter-section form h1 {
+    font-size: 50px;
+}
+
+#news-letter-section form input {
+    width: 50%;
+    height: 50px;
+    padding: 0 20px;
+}
+
+#news-letter-section form button {
+    width: 180px;
+    height: 50px;
+
+    color: var(--white);
+    font-weight: bold;
+    font-size: large;
+
+    border: 1px solid var(--red);
+    background-color: var(--red);
+
+    transition-duration: 250ms;
+}
+
+#news-letter-section form button:hover {
+    color: var(--red);
+    background-color: var(--white);
+}
+</style>
