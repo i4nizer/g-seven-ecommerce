@@ -36,24 +36,37 @@ const categoryModel = {
      * Get all categories and array of products on each.
      * 
      * @param {number} limit - Limit the categories to be retrieved.
-     * @returns {{id: number, name: string, products: {id: number, name: string, imageUrl: string, price: number, description: string} }[]} - Query result on index 0.
+     * @returns {{id: number, name: string, products: {id: number, name: string, images: {imageUrl: string, attribute}[], price: number, description: string}[] }[]} - Query result on index 0.
      */
     readAllCategoriesWithProducts: async (limit = 100) => {
         const conn = await connection
-        const sql = `SELECT categories.category_id as id, categories.name,
+        const sql = `SELECT 
+            categories.category_id AS id, 
+            categories.name,
             JSON_ARRAYAGG(
                 JSON_OBJECT(
                     'id', products.product_id,
                     'name', products.name,
-                    'imageUrl', products.image_url,
+                    'images', (
+                        SELECT JSON_ARRAYAGG(
+                            JSON_OBJECT(
+                                'url', product_images.url,
+                                'attribute', product_images.attribute
+                            )
+                        ) 
+                        FROM product_images
+                        WHERE product_images.product_id = products.product_id
+                    ),
                     'price', products.price,
                     'description', products.description
                 )
             ) AS products
-        FROM category_products
+        FROM 
+            category_products
         INNER JOIN categories ON categories.category_id = category_products.category_id
         INNER JOIN products ON products.product_id = category_products.product_id
-        GROUP BY categories.category_id limit ?
+        GROUP BY categories.category_id
+        LIMIT ?
         `
 
         return await conn.query(sql, [limit])

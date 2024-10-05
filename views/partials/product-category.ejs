@@ -5,7 +5,7 @@
         <%# Render list of products %>
         <% const products = category.products %>
         <% for (const index in products) { %>
-            <%- include('product-card', { key: index, product: products[index], cartUrl: '', buyUrl: '' }) %>
+            <%- include('product-card', { key: index, product: products[index] }) %>
         <% } %>
 
     </div>

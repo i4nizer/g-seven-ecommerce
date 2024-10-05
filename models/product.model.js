@@ -44,6 +44,41 @@ const productModel = {
         return await conn.query(sql, [limit])   
     },
 
+    /**
+     * Get details, images, and reviews of the product.
+     * 
+     * @param {string} id - Id of the product.
+     * @returns {{product_id: number, name: string, description: string, price: number, quantity: number, created_at: Date, updated_at: Date, images: {url: string, attribute: string}[], reviews: {userId: number, username: string, rating: number, comment: string}[] }[0][]} - Query result on index 0.
+     */
+    readDetailsImagesReviewsById: async (id) => {
+        const conn = await connection
+        const sql = `select products.*,
+            JSON_ARRAYAGG(
+                JSON_OBJECT(
+                    'url', product_images.url,
+                    'attribute', product_images.attribute
+                )
+            ) as images,
+            (select JSON_ARRAYAGG(
+                JSON_OBJECT(
+                    'userId', users.user_id,
+                    'username', users.username,
+                    'rating', reviews.rating,
+                    'comment', reviews.comment
+                )
+            ) from reviews 
+            inner join users on users.user_id = reviews.user_id
+            where reviews.product_id = products.product_id
+            ) as reviews
+            from products
+            left join product_images on product_images.product_id = products.product_id
+        where products.product_id = ?
+        group by products.product_id;
+        `
+
+        return await conn.query(sql, [id])
+    },
+
 
 
     /**
