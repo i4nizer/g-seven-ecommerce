@@ -1,0 +1,79 @@
+<section id="hero-section">
+    <div class="text-part">
+        <h1>Step Into Style</h1>
+        <p>Explore our latest collection of trendy shoes that combine comfort and elegance. Find the perfect pair to elevate
+            your
+            wardrobe today!</p>
+        <a href="#">Shop Now</a>
+    </div>
+    <div class="image-part">
+        <img src="/img/shoe-green.png" alt="" srcset="">
+    </div>
+</section>
+
+<style>
+#hero-section {
+    width: 100%;
+    height: calc(100dvh - 60px);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    background-color: var(--light-gray);
+}
+
+#hero-section .text-part {
+    width: calc(60% - 10dvw);
+    height: 100%;
+    padding: 0 5dvw;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#hero-section .text-part h1 { 
+    color: var(--black);
+    font-size: 72px;
+    font-weight: bolder;
+}
+
+#hero-section .text-part p {
+    margin: 5dvh 0 2dvh 0;
+    font-size: large;
+}
+
+#hero-section .text-part a {
+    width: fit-content;
+    height: fit-content;
+    padding: 15px 30px;
+
+    color: var(--white);
+    font-size: large;
+    font-weight: bolder;
+    text-decoration: none;
+    
+    border: 2px solid var(--red);
+    background-color: var(--red);
+
+    transition-duration: 250ms;
+}
+
+#hero-section .text-part a:hover {
+    color: var(--red);
+    background-color: transparent;
+}
+
+#hero-section .image-part {
+    width: 40%;
+    height: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+</style>
