@@ -16,7 +16,7 @@ This is a team repository for a simple ecommerce system.
 <!-- HTML Template -->
 
 <!-- CSS -->
-<% if (key == 0) { %>
+<% if (key == 0) { // avoid duplicate %>
 <style>
 #card {
     width: 100px;
