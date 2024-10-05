@@ -4,44 +4,31 @@ This is a team repository for a simple ecommerce system.
 ### naming conventions
 - controllers: "ian.controller.js"
 - models: "ian.model.js"
+- casing: camelCase
 
-### partials styling
-> We will use vue style for files inside partials directory. (template-script-style)
+### recommended styling for partials
+> I recommend using **key** for templating duplicated partials like card.
 ```
 <!-- HTML Template -->
-<header id="header">
+<div class="card">
     <h5>Hello World</h5>
-</header>
+</div>
 <!-- HTML Template -->
 
-<!-- Javascript -->
-<script>
-/**
- * NOTE:
- *      You can exclude this javascript part as this will cause 
- *      an ERROR with REPLICATED variables and functions.
- */
-</script>
-<!-- Javascript -->
-
 <!-- CSS -->
+<% if (key == 0) { %>
 <style>
-/**
- * NOTE:
- *      Use IDs (id="header") on the root/parent element
- *      which in this case is the header so that you can
- *      target that part without conflic with other files.
- */
-#header {
+#card {
     width: 100px;
     height: 40px;
 }
 
-#header h5 {
+#card h5 {
     width: 100%;
     height: fit-content;
     color: red;
 }
 </style>
+<% } %>
 <!-- CSS -->
 ```

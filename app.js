@@ -1,12 +1,11 @@
 const express = require('express')
 const app = express()
-const routerRoutes = require('./routes/router')
+const router = require('./routes/router')
 
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-app.use('/', routerRoutes)
-
+app.use('/', router)
 
 
 const port = 3000
