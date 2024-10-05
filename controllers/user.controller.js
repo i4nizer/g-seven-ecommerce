@@ -41,9 +41,10 @@ const userController = {
         // set token to cookies
         const onAuth = result => {
             // Check if user exists
-            if (result[0].length == 0) return res.status(404).send('User not found')
+            const users = result[0]
+            if (users.length == 0) return res.status(404).send('User not found')
 
-            const payload = { username: username, role: role }
+            const payload = { userId: users[0].user_id, role: role }
             const duration = 7 * 24 * 60 * 60
             const token = jwt.sign(payload, process.env.LOGIN_SECRET_KEY, { expiresIn: duration })
 

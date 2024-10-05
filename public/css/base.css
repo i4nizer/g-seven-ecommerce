@@ -28,3 +28,12 @@ body {
 
     background-color: var(--white);
 }
+
+section {
+    width: 100%;
+    height: calc(100dvh - 120px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

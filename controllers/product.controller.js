@@ -1,14 +1,14 @@
-const productModel = require('../models/product.model')
+const categoryModel = require('../models/category.model')
 
 
 const productController = {
 
-    // api to get products
-    getProducts: async (req, res) => {
+    // page for products
+    getProductsPage: async (req, res) => {
         
-        // send result
-        await productModel.readAll()
-            .then(products => res.send(products[0]))
+        // render page based on categories and its products
+        await categoryModel.readAllCategoriesWithProducts()
+            .then(result => res.render('products', { categories: result[0] }))
             .catch(err => res.status(500).send(err))
     }
 

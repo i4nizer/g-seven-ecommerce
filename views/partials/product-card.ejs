@@ -1,14 +1,14 @@
 <div class="product-card">
     <div class="image-box">
-        <img src="<%- imageUrl %>" alt="Image">
+        <img src="<%- product.imageUrl %>" alt="Image">
     </div>
     <div class="detail-box">
-        <span class="name"><%- name %></span>
-        <span class="price"><%- price %></span>
+        <span class="name"><%- product.name %></span>
+        <span class="price">Php <%- product.price %></span>
     </div>
     <div class="pop-up-box">
-        <a class="add-to-cart-btn" href="<%- cartUrl %>">Add To Cart</a>
-        <a class="buy-now-btn" href="<%- buyUrl %>">Buy Now</a>
+        <a class="add-to-cart-btn" href="/cart/<%- product.id %>">Add To Cart</a>
+        <a class="view-details-btn" href="<%- buyUrl %>">View Details</a>
     </div>
 </div>
 
@@ -22,6 +22,7 @@
     font-size: large;
 
     display: flex;
+    overflow: hidden;
 
     box-shadow: 2px 2px 5px var(--light-gray);
     background-color: var(--white);
@@ -105,12 +106,12 @@
     background-color: transparent;
 }
 
-.product-card .pop-up-box .buy-now-btn { 
+.product-card .pop-up-box .view-details-btn { 
     border: 1px solid var(--black);
     background-color: var(--black); 
 }
 
-.product-card .pop-up-box .buy-now-btn:hover {
+.product-card .pop-up-box .view-details-btn:hover {
     color: var(--black);
     background-color: transparent;
 }
