@@ -1,0 +1,119 @@
+<div class="product-card">
+    <div class="image-box">
+        <img src="<%- product.images[0].url %>" alt="Image">
+    </div>
+    <div class="detail-box">
+        <span class="name"><%- product.name %></span>
+        <span class="price">Php <%- product.price %></span>
+    </div>
+    <div class="pop-up-box">
+        <a class="add-to-cart-btn" href="/cart/<%- product.id %>">Add To Cart</a>
+        <a class="view-details-btn" href="/products/<%- product.id %>">View Details</a>
+    </div>
+</div>
+
+<% if (key == 0) { // avoid duplicate %>
+<style>
+.product-card {
+    width: 340px;
+    height: 360px;
+
+    font-weight: bold;
+    font-size: large;
+
+    display: flex;
+    overflow: hidden;
+
+    box-shadow: 2px 2px 5px var(--light-gray);
+    background-color: var(--white);
+}
+
+.product-card .image-box {
+    width: 98%;
+    height: 98%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--light-light-gray);
+}
+
+.product-card .image-box img {
+    width: 50%;
+    transition-duration: 250ms;
+}
+
+.product-card:hover .image-box img {
+    scale: 1.1;
+}
+
+.product-card .detail-box {
+    width: 260px;
+    height: 100px;
+    padding: 0 40px;
+
+    align-self: flex-end;
+    justify-self: center;
+    position: absolute;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-card .pop-up-box {
+    width: 340px;
+    height: 360px;
+
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    opacity: 0;
+    position: absolute;
+    translate: 0 100px;
+    transition-duration: 250ms;
+}
+
+.product-card:hover .pop-up-box {
+    opacity: 1;
+    translate: 0 0;
+    backdrop-filter: blur(5px);
+}
+
+.product-card .pop-up-box a {
+    width: 150px;
+    height: 60px;
+    align-content: center;
+
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+
+    transition-duration: 250ms;
+}
+
+.product-card .pop-up-box .add-to-cart-btn { 
+    border: 1px solid var(--red);
+    background-color: var(--red);
+}
+
+.product-card .pop-up-box .add-to-cart-btn:hover { 
+    color: var(--red);
+    background-color: transparent;
+}
+
+.product-card .pop-up-box .view-details-btn { 
+    border: 1px solid var(--black);
+    background-color: var(--black); 
+}
+
+.product-card .pop-up-box .view-details-btn:hover {
+    color: var(--black);
+    background-color: transparent;
+}
+</style>
+<% } %>

@@ -1,0 +1,32 @@
+<aside id="product-images-aside">
+    <h3>Images</h3>
+
+    <%# Product Images Here %>
+    <% for (const index in images) { %>
+        <%- include('product-image-card', { key: index, image: images[index] }) %>
+    <% } %>
+
+</aside>
+
+<style>
+#product-images-aside {
+    width: calc(30% - 4dvw);
+    height: calc(100% - 4dvw);
+    padding: 2dvw;
+
+    overflow: auto;
+
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+    flex-direction: column;
+
+    border-right: 2px solid var(--light-gray);
+}
+
+#product-images-aside h3 {
+    margin: 0 0 20px 0;
+    font-size: x-large;
+}
+</style>

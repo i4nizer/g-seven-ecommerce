@@ -1,0 +1,5 @@
+{
+    "notebook.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.tabWidth": 4,
+    "prettier.printWidth": 160
+}
