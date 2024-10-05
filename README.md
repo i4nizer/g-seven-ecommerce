@@ -10,23 +10,25 @@ This is a team repository for a simple ecommerce system.
 > I recommend using **key** for templating duplicated partials like card.
 ```
 <!-- HTML Template -->
-<div id="card-<%- key %>">
+<div class="card">
     <h5>Hello World</h5>
 </div>
 <!-- HTML Template -->
 
 <!-- CSS -->
+<% if (key == 0) { // avoid duplicate %>
 <style>
-#card-<%- key %> {
+#card {
     width: 100px;
     height: 40px;
 }
 
-#card-<%- key %> h5 {
+#card h5 {
     width: 100%;
     height: fit-content;
     color: red;
 }
 </style>
+<% } %>
 <!-- CSS -->
 ```
