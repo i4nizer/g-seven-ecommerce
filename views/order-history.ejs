@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/base.css">
-    <title>Order History</title>
-</head>
-<body>
-    <%- include('partials/header') %>
-    <section id="order-history">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/base.css">
+        <title>Order History</title>
+    </head>
+    <body>
+        <%- include('partials/header') %>
         <%- include('partials/order-history-control-head') %>
-    
-        <div class="order-list-box">
-            <%- include('partials/order-item') %>
-        </div>
-    
-    </section>
-    <%- include('partials/footer') %>
-</body>
-</html>
+        <%- include('partials/order-list-box') %>
+        <%- include('partials/order-item') %>
+        <%- include('partials/order-total') %>
+        <%- include('partials/footer') %>
+    </body>
+    </html>

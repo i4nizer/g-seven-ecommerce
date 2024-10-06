@@ -1,71 +1,16 @@
-<div class="order-item">
-
-    <div class="order-item-header">
-        <span class="order-item-id">Order: #1234567</span>
-        <span class="order-item-id">Order: #1234567</span>
-    </div>
-
-    <div class="order-item-action-box">
-        <button class="show-invoice">Show Invoice</button>
-        <button class="show-invoice">Cancel</button>
-    </div>
-
-    <div class="order-item-product">
-        <img src="" alt="Image">
-        <span class="quantity">Quantity: 2</span>
-        <span class="total-price">Total Price: Php 120</span>
-        <span class="status">Status: Delivered</span>
-    </div>
-
-    <span class="order-item-total-price">Total Price: Php 120</span>
-
+<div class="order-item-footer">
+    <button class="show-invoice-btn">Show Invoice</button>
+    <button class="buy-now-btn">Buy Now</button>
 </div>
 
 <style>
-    .order-item {
-        border: 1px solid #eee;
-        padding: 15px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-        background-color: white;
-    }
-    .order-item-header {
-        display: flex;
-        justify-content: space-between;
-        font-weight: bold;
-    }
-    .order-item-header .order-item-id {
-        color: #333;
-    }
-    .order-item-action-box {
-        display: flex;
-        justify-content: flex-end;
-        margin: 10px 0;
-    }
-    .order-item-action-box button {
-        background-color: #007bff;
+    .show-invoice-btn, .buy-now-btn {
+        background-color: #f9333b;
         color: white;
         border: none;
         padding: 10px;
         border-radius: 5px;
         cursor: pointer;
         margin-left: 10px;
-    }
-    .order-item-product {
-        display: flex;
-        align-items: center;
-        margin-top: 10px;
-    }
-    .order-item-product img {
-        width: 100px;
-        height: 100px;
-        margin-right: 20px;
-    }
-    .order-item-product .quantity, .order-item-product .total-price, .order-item-product .status {
-        margin-right: 20px;
-        font-size: 14px;
-    }
-    .order-item-product .status {
-        color: green;
     }
 </style>

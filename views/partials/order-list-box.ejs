@@ -1,0 +1,53 @@
+<div class="order-list-box">
+    <% if (orders && orders.length > 0) { %>
+        <% orders.forEach(order => { %>
+            <div class="order-item">
+                <div class="order-item-header">
+                    <span class="order-item-id">Order: #<%= order.order_id %></span>
+                    <span class="order-item-total-price">Total Price: $<%= order.total_price %></span>
+                </div>
+                
+                <div class="order-item-details">
+                    <img src="<%= order.product_image %>" alt="Product Image" class="order-item-product-image">
+                    <div class="order-item-info">
+                        <span class="order-item-name"><%= order.product_name %></span>
+                        <span class="order-item-quantity">Qty: <%= order.quantity %></span>
+                        <span class="order-item-price">Price: $<%= order.price %></span>
+                    </div>
+                    <div class="order-item-status-info">
+                        <span class="order-item-status <%= order.status == 'Delivered' ? 'status-delivered' : 'status-cancelled' %>">
+                            <%= order.status %>
+                        </span>
+                        <span class="order-item-date">Delivery Expected: <%= order.delivery_date %></span>
+                    </div>
+                </div>
+                
+                <div class="order-item-footer">
+                    <button class="show-invoice-btn">Show Invoice</button>
+                    <button class="buy-now-btn">Buy Now</button>
+                </div>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>No orders found.</p>
+    <% } %>
+</div>
+
+<style>
+    .order-item-details {
+        justify-content: space-between;
+        width: 100%;
+        padding: 20px 0;
+    }
+    .order-item-product-image {
+        width: 100px;
+        height: 100px;
+    }
+    .order-item-info, .order-item-status-info {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 20px;
+    }
+</style>

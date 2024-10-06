@@ -1,9 +1,16 @@
 <div class="order-history-control-head">
-
-    <%- include('order-history-tab-control') %>
-
-    <%- include('order-history-date-range') %>
-
+    <div class="order-history-tab-control">
+        <a href="/order/history/all-order" class="order-history-tab">All Order</a>
+        <a href="/order/history/summary" class="order-history-tab">Summary</a>
+        <a href="/order/history/completed" class="order-history-tab">Completed</a>
+        <a href="/order/history/cancelled" class="order-history-tab">Cancelled</a>
+    </div>
+    
+    <div class="order-history-date-range">
+        <input type="date" id="order-history-since">
+        <span>To</span>
+        <input type="date" id="order-history-until">
+    </div>
 </div>
 
 <style>
@@ -12,5 +19,29 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
+        width: 100%;
+    }
+    .order-history-tab-control {
+        display: flex;
+        width: 60%;
+        justify-content: space-around;
+    }
+    .order-history-date-range {
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .order-history-date-range input[type="date"] {
+        padding: 5px;
+        width: 48%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .order-history-tab-control a {
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 20px;
+        flex-grow: 1;
+        text-align: center;
     }
 </style>
