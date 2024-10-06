@@ -6,11 +6,11 @@
         <img src="<%- product.image.url %>" alt="Image">
     </div>
     <h3 class="product-name"><%- product.name %></h3>
-    <button class="remove-btn">Remove</button>
+    <button class="remove-btn" onclick="onRemoveCartItem(`<%- cartItem.id %>`)">Remove</button>
     <div class="quantity-box">
-        <span class="minus-icon"><%- include('../svgs/minus') %></span>
-        <input class="quantity" type="text" placeholder="0">
-        <span class="plus-icon"><%- include('../svgs/plus') %></span>
+        <span onclick="onCartItemQuantityChange(`<%- cartItem.id %>`, false)" class="minus-icon"><%- include('../svgs/minus') %></span>
+        <input oninput="onCartItemQuantityInput(`<%- cartItem.id %>`, this)" class="quantity" type="text" placeholder="1" value="<%- cartItem.quantity %>">
+        <span onclick="onCartItemQuantityChange(`<%- cartItem.id %>`, true)" class="plus-icon"><%- include('../svgs/plus') %></span>
     </div>
     <span class="price">Price: Php <%- product.price %></span>
     <span class="total-price">Total: Php <%- cartItem.quantity * product.price %></span>
@@ -19,7 +19,95 @@
 
 <% if (key == 0) { %>
 <script>
+// remove product from cart
+const onRemoveCartItem = async (cartItemId) => {
 
+    // send cart item id to delete from cart
+    await fetch('/cart', {
+        method: 'DELETE',
+        body: JSON.stringify({ cartItemId: cartItemId }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+
+        // TODO: show result on toast message
+        if (res.ok) {
+            alert('Cart item removed from cart.')
+
+            // remove cart item from DOM
+            const cartItem = document.getElementById(`cart-item-${cartItemId}`)
+            if (cartItem != null) cartItem.remove()
+
+        } else alert('Failed to remove cart item from cart.')
+    })
+    .catch(err => console.log(err))
+}
+
+// update product quantity
+const onUpdateCartItemQuantity = async (cartItemId, quantity, cartItemEl = null, quantityEl = null) => {
+
+    // ref cart item
+    const cartItem = cartItemEl ?? document.getElementById(`cart-item-${cartItemId}`)
+    if (!cartItem) return alert('Unable to find cart item in DOM.')
+
+    // ref quantity element
+    const quantityInput = quantityEl ?? cartItem.querySelector('input.quantity')
+    if (!quantityInput) return alert('Unable to find quantity in DOM.')
+
+    // send changes to server
+    await fetch('/cart', {
+        method: 'PATCH',
+        body: JSON.stringify({ cartItemId: cartItemId, quantity: quantity }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+
+        // TODO: show result on toast message
+        if (res.ok) {
+            alert(`Cart item quantity updated to ${quantity}.`)
+
+            // update input in DOM
+            quantityInput.value = quantity
+
+        } else alert('Failed to update cart item quantity.')
+    })
+    .catch(err => console.log(err))
+}
+
+// for svg icons click - +
+const onCartItemQuantityChange = async (cartItemId, isIncrement) => {
+    
+    // ref cart item
+    const cartItem = document.getElementById(`cart-item-${cartItemId}`)
+    if (!cartItem) return alert('Unable to find cart item in DOM.')
+
+    // ref quantity element
+    const quantityInput = cartItem.querySelector('input.quantity')
+    if (!quantityInput) return alert('Unable to find quantity in DOM.')
+
+    // validate change
+    let quantity = Number(quantityInput.value)
+    if (isNaN(quantity)) return alert('Input is not a number.')
+    
+    // apply increment/decrement
+    quantity = quantity + (isIncrement ? 1 : -1)
+    if (quantity <= 0) return alert(`Quantity cannout be less than 0.`)
+
+    // update
+    await onUpdateCartItemQuantity(cartItemId, quantity, cartItem, quantityInput).catch(err => console.log(err))
+}
+
+// for quantity input element
+const onCartItemQuantityInput = async (cartItemId, quantityEl) => {
+    
+    // validate input
+    const quantity = Number(quantityEl.value)
+    if (isNaN(quantity)) return alert('Input is not a number.')
+    if (quantity <= 0) return alert(`Quantity cannout be less than 0.`)
+
+    // update
+    await onUpdateCartItemQuantity(cartItemId, quantity, null, quantityEl).catch(err => console.log(err))
+}
 </script>
 <% } %>
 
@@ -27,7 +115,8 @@
 <style>
 .cart-item {
     width: calc(100% - 2dvw - 2px);
-    height: 150px;
+    height: 100px;
+    min-height: 100px;
     padding: 1dvw;
 
     display: grid;

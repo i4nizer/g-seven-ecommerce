@@ -84,18 +84,18 @@ const cartModel = {
 
 
     /**
-     * Update product quantity.
+     * Update product quantity on cart.
      * 
      * @param {string} cartId - Id of the cart the product is located.
      * @param {string} productId - Id of the product to update.
      * @param {number} quantity - New quantity of the products.
      * @returns - Query result on index 0.
      */
-    updateProductQuantity: async (cartId, productId, quantity) => {
+    updateCartItemQuantity: async (cartItemId, quantity) => {
         const conn = await connection
-        const sql = 'update cart_items set quantity = ? where cart_id = ? and product_id = ?'
+        const sql = 'update cart_items set quantity = ? where cart_item_id = ?'
 
-        return await conn.query(sql, [quantity, cartId, productId])
+        return await conn.query(sql, [quantity, cartItemId])
     },
 
 
@@ -107,11 +107,11 @@ const cartModel = {
      * @param {string} productId - Id of the product to be removed from the cart.
      * @returns - Query result on index 0.
      */
-    removeProductFromCart: async (cartId, productId) => {
+    deleteCartItemById: async (cartItemId) => {
         const conn = await connection
-        const sql = 'delete from cart_items where cartId = ? and product_id = ?'
+        const sql = 'delete from cart_items where cart_item_id = ?'
 
-        return await conn.query(sql, [cartId, productId])
+        return await conn.query(sql, [cartItemId])
     }
 }
 

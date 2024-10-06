@@ -13,24 +13,56 @@ const cartController = {
             .catch(err => res.status(500).send(err))
     },
 
+
+
     // api for adding product to cart
     postAddProductToCart: async (req, res) => {
+        try {
+            // get cartId using userId
+            const result = await cartModel.readCartIdByUserId(req.userId);
+            
+            // gather params
+            const cartId = result[0][0]?.cartId
+            const productId = req.body.productId
+            const quantity = req.body.quantity
 
-        // get cardId using userId
-        let cartId = ''
-        let error = false
-        await cartModel.readCartIdByUserId(req.userId)
-            .then(result => cartId = result[0][0].cartId)
-            .catch(err => error = err)
-        
-        // check for error
-        if(error) return res.status(500).send(error)
+            // add product to cart
+            const addResult = await cartModel.addProductToCart(cartId, productId, quantity)
+            res.send(addResult)
 
-        // send result
-        await cartModel.addProductToCart(cartId, req.body.productId, req.body.quantity)
-            .then(result => res.send(result))
-            .catch(err => res.status(500).send(err))
-    }
+        } catch (err) { res.status(500).send(err) }
+    },
+
+
+
+    // update product quantity on cart
+    patchProductQuantityOnCart: async (req, res) => {
+        try {
+            // gather params
+            const cartItemId = req.body.cartItemId
+            const quantity = req.body.quantity
+
+            // update product quantity to cart
+            const updateResult = await cartModel.updateCartItemQuantity(cartItemId, quantity)
+            res.send(updateResult)
+
+        } catch (err) { res.status(500).send(err) }
+    },
+
+
+
+    // remove product from cart
+    deleteCartItemFromCart: async (req, res) => {
+        try {
+            // gather params
+            const cartItemId = req.body.cartItemId
+
+            // add product to cart
+            const deleteResult = await cartModel.deleteCartItemById(cartItemId)
+            res.send(deleteResult)
+
+        } catch (err) { res.status(500).send(err) }
+    },
 
 }
 

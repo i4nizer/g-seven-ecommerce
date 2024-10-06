@@ -1,6 +1,6 @@
 <div id="cart-items-main">
     <h1>Shopping Cart</h1>
-    <div class="cart-items">
+    <div class="cart-items-box">
 
         <%# Cart Items Here %>
         <% for (const index in cartItems) { %>
@@ -24,6 +24,7 @@
 #cart-items-main h1 {
     width: calc(100% - 4dvw);
     height: 80px;
+    min-height: 80px;
     padding: 0 2dvw;
 
     color: var(--red);
@@ -34,9 +35,10 @@
     border-bottom: 1px solid var(--light-gray);
 }
 
-#cart-items-main .cart-items {
+#cart-items-main .cart-items-box {
     width: calc(100% - 2dvw);
-    height: calc(100% - 2dvw - 81px);
+    height: auto;
+    min-height: calc(100% - 2dvw - 81px);
     padding: 1dvw;
 
     overflow: auto;
@@ -47,4 +49,4 @@
     justify-content: flex-start;
     flex-direction: column;
 }
-</style>
+</style>    
