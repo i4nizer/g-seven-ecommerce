@@ -34,17 +34,37 @@ const cartModel = {
 
 
     /**
-     * Get the user's cart products.
+     * Get the user's cart cart items.
      * 
      * @param {string} id - Id of the user to get the cart products.
-     * @returns {{name: string, description: string, image_url: string, price: number, quantity: number, created_at: Date, updated_at: Date}} - Array of products in the user's cart.
+     * @returns {{id: number, quantity: number, product: {id: number, name: string, price: number, stock: number, image: {id: number, url: string, attribute: string}}}[]} - Array of products in the user's cart.
      */
-    getAllCartProductsByUserId: async (id) => {
+    getAllCartItemsByUserId: async (id) => {
         const conn = await connection
-        const sql = `select products.* from products
-                        inner join cart_items on cart_items.product_id = products.product_id
-                        inner join cart on cart.cart_id = cart_items.cart_id
-                     where cart.user_id = ?`
+        const sql = `
+            SELECT cart_items.cart_item_id AS id,
+            cart_items.quantity,
+            JSON_OBJECT(
+                'id', products.product_id,
+                'name', products.name,
+                'price', products.price,
+                'stock', products.quantity,
+                'image', (
+                    SELECT JSON_OBJECT(
+                        'id', product_images.product_image_id,
+                        'url', product_images.url,
+                        'attribute', product_images.attribute
+                    ) AS image
+                    FROM product_images
+                    WHERE product_images.product_id = products.product_id
+                    LIMIT 1
+                ) -- image object end
+            ) AS product
+            FROM cart_items
+            INNER JOIN products ON products.product_id = cart_items.product_id
+            INNER JOIN cart ON cart.cart_id = cart_items.cart_id
+            WHERE cart.user_id = ?
+        `
 
         return await conn.query(sql, [id])
     },

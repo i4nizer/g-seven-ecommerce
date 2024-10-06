@@ -1,0 +1,148 @@
+<div class="cart-item" id="cart-item-<%- cartItem.id %>">
+
+    <%# cartItem: {id, quantity, product: {id, name, price, stock, image {id, url, attribute} } } %>
+    <% const product = cartItem.product %>
+    <div class="image-box">
+        <img src="<%- product.image.url %>" alt="Image">
+    </div>
+    <h3 class="product-name"><%- product.name %></h3>
+    <button class="remove-btn">Remove</button>
+    <div class="quantity-box">
+        <span class="minus-icon"><%- include('../svgs/minus') %></span>
+        <input class="quantity" type="text" placeholder="0">
+        <span class="plus-icon"><%- include('../svgs/plus') %></span>
+    </div>
+    <span class="price">Price: Php <%- product.price %></span>
+    <span class="total-price">Total: Php <%- cartItem.quantity * product.price %></span>
+
+</div>
+
+<% if (key == 0) { %>
+<script>
+
+</script>
+<% } %>
+
+<% if (key == 0) { %>
+<style>
+.cart-item {
+    width: calc(100% - 2dvw - 2px);
+    height: 150px;
+    padding: 1dvw;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+    border: 1px solid var(--light-gray);
+}
+
+.cart-item .image-box {
+    width: 100%;
+    height: 100%;
+
+    align-self: center;
+    justify-self: center;
+
+    grid-row: 1 / span 2;
+    grid-column: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item .image-box img {
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    transition-duration: 250ms;
+}
+
+.cart-item .image-box:hover img {
+    scale: 1.1;
+}
+
+.cart-item .product-name {
+    align-self: center;
+    justify-self: center;
+
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.cart-item .remove-btn {
+    padding: 10px 20px;
+    
+    color: var(--red);
+    font-weight: bold;
+    
+    grid-row: 2;
+    grid-column: 2;
+    align-self: center;
+    justify-self: center;
+
+    border: 1px solid var(--red);
+    background-color: transparent;
+
+    transition-duration: 250ms;
+}
+
+.cart-item .remove-btn:hover {
+    color: var(--white);
+    background-color: var(--red);
+}
+
+.cart-item .quantity-box {
+    width: 60%;
+    height: 60px;
+    
+    grid-row: 1 / span 2;
+    grid-column: 3;
+    
+    align-self: center;
+    justify-self: center;
+    
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.cart-item .quantity-box span svg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.cart-item .quantity-box span:hover svg {
+    scale: 1.1;
+    fill: var(--red);
+}
+
+.cart-item .quantity-box .quantity {
+    width: 30px;
+    height: 25px;
+    padding: 5px;
+
+    text-align: center;
+    border: 1px solid var(--light-gray);
+}
+
+.cart-item .price {
+    align-self: center;
+    justify-self: center;
+
+    grid-row: 1 / span 2;
+    grid-column: 4;
+}
+
+.cart-item .total-price {
+    align-self: center;
+    justify-self: center;
+
+    grid-row: 1 / span 2;
+    grid-column: 5;
+}
+
+</style>
+<% } %>

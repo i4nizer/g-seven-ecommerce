@@ -90,8 +90,12 @@ const userMiddleware = {
         // jwt inevitably throws error for invalid token
         try {
 
-            // process payload
-            jwt.verify(loginToken, process.env.LOGIN_SECRET_KEY)
+            // get payload
+            const payload = jwt.verify(loginToken, process.env.LOGIN_SECRET_KEY)
+
+            // set userId for future process
+            req.userId = payload.userId
+
             next()
         } catch (err) { 
             

@@ -1,0 +1,37 @@
+
+E-Commerce System
+Functional Requirements
+
+1. User Account Management
+    •	User Registration: The system shall allow new users to register by providing necessary information (name, email, password, etc).
+    •	User Login/Logout: The system shall allow registered users to log in and log out securely.
+
+2. Product Search
+    •	Product Search: The system shall allow users to search for products by name, keyword, or product code.
+    •	Product Filtering: The system shall enable users to filter products by categories, price, and rating.
+    •	Product Categorization: The system shall categorize products for easier navigation.
+
+3. Product Details
+    •	Product Details Page: The system shall display detailed product information: description, price, images, and stock availability.
+    •	Product Review: The system shall allow users to review products providing rating and comment.
+
+4. Shopping Cart
+    •	Cart Management: The system shall allow users to view, add, and remove products to a shopping cart and change quantity of products.
+
+5. Checkout
+    •	Checkout Process: The system shall guide users through a secure checkout process by providing billing, shipping, and payment details.
+    •	Order Confirmation: Upon completing a purchase, the system shall provide an order confirmation to the user.
+
+6. Order Management
+    •	Order History: Users shall be able to view their order history and details from their account.
+    •	Order Notifications: The system shall notify users via email when their order is confirmed, shipped, or delivered.
+
+7. Administrator Features
+    •	Admin Dashboard: The system shall provide administrators with a dashboard to view products, users, and orders.
+    •	Product Management: Administrators shall be able to add, update, or remove products from the system.
+    •	Inventory Management: Administrators shall be able to track and manage inventory levels.
+    •	Order Management: Administrators shall be able to view and update order statuses.
+
+8. Security and Privacy
+    •	User Authentication & Authorization: The system shall require secure user authentication via JWT on cookies.
+    •	Data Encryption: Sensitive data such as passwords shall be hashed.
