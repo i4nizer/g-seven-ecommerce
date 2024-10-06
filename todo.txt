@@ -16,8 +16,13 @@ General
             [/] views/partials/product-category.ejs
                 [/] views/partials/product-card.ejs
         [/] views/partials/footer.ejs
-    [ ] views/product-details.ejs
-        [ ] views/product-details.ejs
+    [/] views/product-details.ejs
+        [/] views/product-details-section.ejs
+            [/] views/product-details-images-aside.ejs
+                [/] views/product-details-image-card.ejs
+            [/] views/product-details-main.ejs
+                [/] views/product-reviews.ejs
+                    [/] views/product-review-message.ejs
     [ ] views/cart.ejs
         [ ] product variants list
         [ ] product details
