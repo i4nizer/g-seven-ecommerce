@@ -23,9 +23,9 @@ General
             [/] views/product-details-main.ejs
                 [/] views/product-reviews.ejs
                     [/] views/product-review-message.ejs
-    [ ] views/cart.ejs
-        [ ] product variants list
-        [ ] product details
+    [/] views/cart.ejs
+        [/] product images list
+        [/] product details
 
 
 Specific
