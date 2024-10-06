@@ -7,7 +7,7 @@
         <span class="price">Php <%- product.price %></span>
     </div>
     <div class="pop-up-box">
-        <a class="add-to-cart-btn" href="/cart/<%- product.id %>">Add To Cart</a>
+        <a class="add-to-cart-btn" onclick="onAddToCart(`<%- product.id %>`)">Add To Cart</a>
         <a class="view-details-btn" href="/products/<%- product.id %>">View Details</a>
     </div>
 </div>

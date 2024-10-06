@@ -34,12 +34,24 @@ const cartModel = {
 
 
     /**
+     * 
+     * @param {string} id - UserId to be used to get cartId.
+     * @returns {{cartId: number}[0][]} - Query result on index 0.
+     */
+    readCartIdByUserId: async (id) => {
+        const conn = await connection
+        const sql = 'select cart.cart_id as cartId from cart where cart.user_id = ?'
+
+        return await conn.query(sql, [id])
+    },
+
+    /**
      * Get the user's cart cart items.
      * 
      * @param {string} id - Id of the user to get the cart products.
      * @returns {{id: number, quantity: number, product: {id: number, name: string, price: number, stock: number, image: {id: number, url: string, attribute: string}}}[]} - Array of products in the user's cart.
      */
-    getAllCartItemsByUserId: async (id) => {
+    readAllCartItemsByUserId: async (id) => {
         const conn = await connection
         const sql = `
             SELECT cart_items.cart_item_id AS id,
