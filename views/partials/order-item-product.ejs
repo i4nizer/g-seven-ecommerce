@@ -1,0 +1,38 @@
+<div class="order-item-product">
+    <img src="img/shoe-green.png" alt="Product Image">
+    <span class="product-name">Shoe</span>
+    <span class="quantity">Qty: 1</span>
+    <span class="total-price">Price: $80.00</span>
+    <span class="status">Delivered</span>
+</div>
+<style>
+    .order-item-product {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    
+    .order-item-product img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+    
+    .order-item-product span {
+        font-size: 14px;
+        color: #333;
+    }
+    
+    /* Status and Delivery */
+    .order-item-product .status {
+        color: green;
+    }
+    
+    .order-item-product .status.cancelled {
+        color: red;
+    }
+</style>

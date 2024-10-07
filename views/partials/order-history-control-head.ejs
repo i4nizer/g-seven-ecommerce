@@ -1,47 +1,20 @@
 <div class="order-history-control-head">
-    <div class="order-history-tab-control">
-        <a href="/order/history/all-order" class="order-history-tab">All Order</a>
-        <a href="/order/history/summary" class="order-history-tab">Summary</a>
-        <a href="/order/history/completed" class="order-history-tab">Completed</a>
-        <a href="/order/history/cancelled" class="order-history-tab">Cancelled</a>
-    </div>
-    
-    <div class="order-history-date-range">
-        <input type="date" id="order-history-since">
-        <span>To</span>
-        <input type="date" id="order-history-until">
-    </div>
+    <%- include('order-history-tab-control') %>
+    <%- include('order-history-date-range') %>
 </div>
-
 <style>
     .order-history-control-head {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
-        width: 100%;
-    }
-    .order-history-tab-control {
-        display: flex;
-        width: 60%;
-        justify-content: space-around;
-    }
-    .order-history-date-range {
-        width: 40%;
-        display: flex;
-        justify-content: space-between;
-    }
-    .order-history-date-range input[type="date"] {
-        padding: 5px;
-        width: 48%;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-    .order-history-tab-control a {
-        text-decoration: none;
-        font-weight: bold;
-        padding: 10px 20px;
-        flex-grow: 1;
-        text-align: center;
+        margin-bottom: 10px;
+        width: 99%; /* Takes up the full width of its parent container */
+        position: fixed; /* Stays fixed when scrolling */
+        top: 60px; /* Adjust this value to match the height of your header */
+        left: 0;
+        background-color: white; /* Ensures the background is visible */
+        z-index: 1000; /* Makes sure it stays on top of other content */
+        padding: 10px 20px; /* Optional padding for spacing */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to distinguish it from the header */
     }
 </style>
