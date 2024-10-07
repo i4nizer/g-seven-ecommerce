@@ -4,8 +4,12 @@ const cookieParser = require('cookie-parser')
 
 const authenticationRoutes = require('./authentication.route')
 const productRoutes = require('./product.route')
+<<<<<<< HEAD
+const checkoutRoutes = require('./checkout.route')
+=======
 const cartRoutes = require('./cart.route')
 const orderRoutes = require('./order.route')
+>>>>>>> main
 
 
 // needed parsers
@@ -16,8 +20,12 @@ router.use(cookieParser())
 // specific routes
 router.use('/authentication', authenticationRoutes)
 router.use('/products', productRoutes)
+<<<<<<< HEAD
+router.use('/checkout', checkoutRoutes)
+=======
 router.use('/cart', cartRoutes)
 router.use('/order', orderRoutes)
+>>>>>>> main
 
 // home route
 router.get('/', async (req, res) => {
