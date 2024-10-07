@@ -1,0 +1,104 @@
+<aside id="order-summary">
+    <h2>Order Summary</h2>
+
+    <h3>Products</h3>
+    <div class="selected-items">
+        <!-- <span>Product Name - (count * price)</span> -->
+        <span>Product Name - (3 * Php 120)</span>
+        <span>Product Name - (2 * Php 320)</span>
+    </div>
+
+    <div class="status">
+        <span class="item-count">Items 5</span>
+        <span class="total-price">Php 1000</span>
+    </div>
+    <button>Checkout</button>
+</aside>
+
+<style>
+#order-summary {
+    width: 35%;
+    height: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    border-left: 2px solid var(--light-gray);
+    background-color: var(--white);
+}
+
+#order-summary h2 {
+    width: calc(100% - 4dvw);
+    height: 80px;
+    padding: 0 2dvw;
+
+    text-align: center;
+    align-content: center;
+
+    border-bottom: 1px solid var(--light-gray);
+}
+
+#order-summary h3 {
+    width: calc(100% - 4dvw);
+    height: 60px;
+    padding: 0 2dvw;
+
+    align-content: center;
+}
+
+#order-summary .selected-items {
+    width: calc(100% - 4dvw);
+    height: calc(100% - 80px - 60px - 60px - 100px);
+    padding: 0 2dvw;
+
+    overflow: auto;
+
+    gap: 2px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#order-summary .selected-items span {
+    width: calc(100% - 2dvw - 2px);
+    height: auto;
+    padding: 1dvw;
+
+    border: 1px solid var(--light-gray);
+}
+
+#order-summary .status {
+    width: calc(100% - 4dvw);
+    height: 60px;
+    padding: 0 2dvw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    border-bottom: 1px solid var(--light-gray);
+}
+
+#order-summary button {
+    width: 200px;
+    height: 60px;
+    margin: 10px 2dvw 0 0;
+
+    color: var(--white);
+    font-size: large;
+    font-weight: bolder;
+    align-self: flex-end;
+
+    border: 2px solid var(--red);
+    background-color: var(--red);
+
+    transition-duration: 250ms;
+}
+
+#order-summary button:hover {
+    color: var(--red);
+    background-color: transparent;
+}
+</style>

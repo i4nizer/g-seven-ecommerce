@@ -1,0 +1,237 @@
+<div class="cart-item" id="cart-item-<%- cartItem.id %>">
+
+    <%# cartItem: {id, quantity, product: {id, name, price, stock, image {id, url, attribute} } } %>
+    <% const product = cartItem.product %>
+    <div class="image-box">
+        <img src="<%- product.image.url %>" alt="Image">
+    </div>
+    <h3 class="product-name"><%- product.name %></h3>
+    <button class="remove-btn" onclick="onRemoveCartItem(`<%- cartItem.id %>`)">Remove</button>
+    <div class="quantity-box">
+        <span onclick="onCartItemQuantityChange(`<%- cartItem.id %>`, false)" class="minus-icon"><%- include('../../svgs/minus') %></span>
+        <input oninput="onCartItemQuantityInput(`<%- cartItem.id %>`, this)" class="quantity" type="text" placeholder="1" value="<%- cartItem.quantity %>">
+        <span onclick="onCartItemQuantityChange(`<%- cartItem.id %>`, true)" class="plus-icon"><%- include('../../svgs/plus') %></span>
+    </div>
+    <span class="price">Price: Php <%- product.price %></span>
+    <span class="total-price">Total: Php <%- cartItem.quantity * product.price %></span>
+
+</div>
+
+<% if (key == 0) { %>
+<script>
+// remove product from cart
+const onRemoveCartItem = async (cartItemId) => {
+
+    // send cart item id to delete from cart
+    await fetch('/cart', {
+        method: 'DELETE',
+        body: JSON.stringify({ cartItemId: cartItemId }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+
+        // TODO: show result on toast message
+        if (res.ok) {
+            alert('Cart item removed from cart.')
+
+            // remove cart item from DOM
+            const cartItem = document.getElementById(`cart-item-${cartItemId}`)
+            if (cartItem != null) cartItem.remove()
+
+        } else alert('Failed to remove cart item from cart.')
+    })
+    .catch(err => console.log(err))
+}
+
+// update product quantity
+const onUpdateCartItemQuantity = async (cartItemId, quantity, cartItemEl = null, quantityEl = null) => {
+
+    // ref cart item
+    const cartItem = cartItemEl ?? document.getElementById(`cart-item-${cartItemId}`)
+    if (!cartItem) return alert('Unable to find cart item in DOM.')
+
+    // ref quantity element
+    const quantityInput = quantityEl ?? cartItem.querySelector('input.quantity')
+    if (!quantityInput) return alert('Unable to find quantity in DOM.')
+
+    // send changes to server
+    await fetch('/cart', {
+        method: 'PATCH',
+        body: JSON.stringify({ cartItemId: cartItemId, quantity: quantity }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+
+        // TODO: show result on toast message
+        if (res.ok) {
+            alert(`Cart item quantity updated to ${quantity}.`)
+
+            // update input in DOM
+            quantityInput.value = quantity
+
+        } else alert('Failed to update cart item quantity.')
+    })
+    .catch(err => console.log(err))
+}
+
+// for svg icons click - +
+const onCartItemQuantityChange = async (cartItemId, isIncrement) => {
+    
+    // ref cart item
+    const cartItem = document.getElementById(`cart-item-${cartItemId}`)
+    if (!cartItem) return alert('Unable to find cart item in DOM.')
+
+    // ref quantity element
+    const quantityInput = cartItem.querySelector('input.quantity')
+    if (!quantityInput) return alert('Unable to find quantity in DOM.')
+
+    // validate change
+    let quantity = Number(quantityInput.value)
+    if (isNaN(quantity)) return alert('Input is not a number.')
+    
+    // apply increment/decrement
+    quantity = quantity + (isIncrement ? 1 : -1)
+    if (quantity <= 0) return alert(`Quantity cannout be less than 0.`)
+
+    // update
+    await onUpdateCartItemQuantity(cartItemId, quantity, cartItem, quantityInput).catch(err => console.log(err))
+}
+
+// for quantity input element
+const onCartItemQuantityInput = async (cartItemId, quantityEl) => {
+    
+    // validate input
+    const quantity = Number(quantityEl.value)
+    if (isNaN(quantity)) return alert('Input is not a number.')
+    if (quantity <= 0) return alert(`Quantity cannout be less than 0.`)
+
+    // update
+    await onUpdateCartItemQuantity(cartItemId, quantity, null, quantityEl).catch(err => console.log(err))
+}
+</script>
+<% } %>
+
+<% if (key == 0) { %>
+<style>
+.cart-item {
+    width: calc(100% - 2dvw - 2px);
+    height: 100px;
+    min-height: 100px;
+    padding: 1dvw;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+    border: 1px solid var(--light-gray);
+}
+
+.cart-item .image-box {
+    width: 100%;
+    height: 100%;
+
+    align-self: center;
+    justify-self: center;
+
+    grid-row: 1 / span 2;
+    grid-column: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item .image-box img {
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    transition-duration: 250ms;
+}
+
+.cart-item .image-box:hover img {
+    scale: 1.1;
+}
+
+.cart-item .product-name {
+    align-self: center;
+    justify-self: center;
+
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.cart-item .remove-btn {
+    padding: 10px 20px;
+    
+    color: var(--red);
+    font-weight: bold;
+    
+    grid-row: 2;
+    grid-column: 2;
+    align-self: center;
+    justify-self: center;
+
+    border: 1px solid var(--red);
+    background-color: transparent;
+
+    transition-duration: 250ms;
+}
+
+.cart-item .remove-btn:hover {
+    color: var(--white);
+    background-color: var(--red);
+}
+
+.cart-item .quantity-box {
+    width: 60%;
+    height: 60px;
+    
+    grid-row: 1 / span 2;
+    grid-column: 3;
+    
+    align-self: center;
+    justify-self: center;
+    
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.cart-item .quantity-box span svg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.cart-item .quantity-box span:hover svg {
+    scale: 1.1;
+    fill: var(--red);
+}
+
+.cart-item .quantity-box .quantity {
+    width: 30px;
+    height: 25px;
+    padding: 5px;
+
+    text-align: center;
+    border: 1px solid var(--light-gray);
+}
+
+.cart-item .price {
+    align-self: center;
+    justify-self: center;
+
+    grid-row: 1 / span 2;
+    grid-column: 4;
+}
+
+.cart-item .total-price {
+    align-self: center;
+    justify-self: center;
+
+    grid-row: 1 / span 2;
+    grid-column: 5;
+}
+
+</style>
+<% } %>

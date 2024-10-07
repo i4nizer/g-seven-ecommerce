@@ -1,0 +1,40 @@
+<div class="order-item-product">
+    <img src="/img/shoe-green.png <%- // orderItem.product.image[0] %>" alt="Product Image">
+    <span class="name">Shoe <%- // product.name %></span>
+    <span class="quantity">Quantity: 2 <%- // orderItem.quantity %> </span>
+    <span class="price">Price: Php 80.00 <%- // orderItem.price %></span>
+    <span class="total-price">Total: Php 160.00 <%- // orderItem.price %></span>
+</div>
+
+<% if (key == 0) { %>
+<style>
+.order-item-product {
+    width: calc(100% - 40px);
+    height: 89px;
+    padding: 20px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.order-item-product .name {
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.order-item-product img {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+
+    object-fit: contain;
+}
+
+.order-item-product span {
+    color: var(--black);
+    font-size: 14px;
+}
+</style>
+<% } %>

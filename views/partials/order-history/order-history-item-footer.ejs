@@ -1,0 +1,57 @@
+<div class="order-history-item-footer">
+    <span class="order-history-item-total-price">Total Price: Php 120 <%- // orders.totalPrice %></span>
+    <div class="order-history-item-btn-box">
+        <button class="show-invoice-btn">Show Invoice</button>
+        <% if (true) { // order.status != delivered %>
+            <button class="cancel-btn">Cancel</button>
+        <% } %>
+    </div>
+</div>
+
+<style>
+.order-history-item-footer {
+    width: calc(100% - 40px);
+    height: 39px;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.order-history-item-footer .order-history-item-btn-box {
+    width: auto;
+    height: 100%;
+
+    gap: 10px;
+    display: flex;
+}
+
+.order-history-item-footer .order-history-item-btn-box button {
+    padding: 10px 20px;
+    font-weight: bold;
+    transition-duration: 250ms;
+}
+
+.order-history-item-footer .order-history-item-btn-box .show-invoice-btn {
+    color: var(--blue);
+    border: 2px solid var(--blue);
+    background-color: transparent;
+}
+
+.order-history-item-footer .order-history-item-btn-box .show-invoice-btn:hover {
+    color: var(--white);
+    background-color: var(--blue);
+}
+
+.order-history-item-footer .order-history-item-btn-box .cancel-btn {
+    color: var(--red);
+    border: 2px solid var(--red);
+    background-color: transparent;
+}
+
+.order-history-item-footer .order-history-item-btn-box .cancel-btn:hover {
+    color: var(--white);
+    background-color: var(--red);
+}
+</style>

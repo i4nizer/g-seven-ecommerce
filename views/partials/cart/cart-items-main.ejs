@@ -1,0 +1,52 @@
+<div id="cart-items-main">
+    <h1>Shopping Cart</h1>
+    <div class="cart-items-box">
+
+        <%# Cart Items Here %>
+        <% for (const index in cartItems) { %>
+            <%- include('cart-item', { key: index, cartItem: cartItems[index] }) %>
+        <% } %>
+
+    </div>
+</div>
+
+<style>
+#cart-items-main {
+    width: 65%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#cart-items-main h1 {
+    width: calc(100% - 4dvw);
+    height: 80px;
+    min-height: 80px;
+    padding: 0 2dvw;
+
+    color: var(--red);
+    font-size: xx-large;
+
+    align-content: center;
+
+    border-bottom: 1px solid var(--light-gray);
+}
+
+#cart-items-main .cart-items-box {
+    width: calc(100% - 2dvw);
+    height: auto;
+    min-height: calc(100% - 2dvw - 81px);
+    padding: 1dvw;
+
+    overflow: auto;
+
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+</style>    

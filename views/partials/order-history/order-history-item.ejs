@@ -1,0 +1,20 @@
+<div class="order-history-item">
+    <%- include('order-history-item-header') %>
+
+    <%# Order History Items Here %>
+    <%- include('order-history-item-product', { key: 0 }) %>
+    
+    <%- include('order-history-item-footer') %>
+</div>
+
+<style>
+.order-history-item {
+    width: calc(100% - 2px); 
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    
+    border: 1px solid var(--light-gray);
+}
+</style>

@@ -1,12 +1,14 @@
 <header id="header">
     <div class="logo-box">
-        <a class="logo" href="#"><!-- Put logo here --></a>
-        <a class="logo-text" href="#">Logo<!-- Put logo text here --></a>
+        <a class="logo" href="/"><img src="/img/logo.png" alt="Logo" class="logo-image"></a>
+        <a class="logo-text" href="/">G7</a>
     </div>
     <nav class="nav">
         <a href="/">Home</a>
         <a href="/products">Products</a>
         <a href="/cart">Cart</a>
+        <a href="/order/history/all-order">Order History</a>
+
     </nav>
 </header>
 
@@ -28,14 +30,23 @@
     text-decoration: none;
 }
 
-#header .logo-box {}
+#header .logo-box {
+    display: flex;
+    align-items: center;
+}
+
+#header .logo-box .logo-image {
+    height: 40px; 
+    width: auto; 
+}
 
 #header .logo-box .logo-text {
     font-size: x-large;
+    margin-left: 10px;
 }
 
 #header .nav {
-    gap: 1dvw;
+    gap: 2dvw;
     display: flex;
     align-items: center;
     justify-content: space-between;

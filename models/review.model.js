@@ -1,4 +1,4 @@
-const connection = require('../config/database')
+const connectDatabase = require('../config/database')
 
 
 const reviewModel = {
@@ -12,7 +12,7 @@ const reviewModel = {
      * @returns - Query result on index 0.
      */
     createReview: async (productId, userId, review) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `insert into reviews(product_id, user_id, rating, comment) values(?, ?, ?, ?)`
 
         return await conn.query(sql, [productId, userId, ...review])
@@ -26,7 +26,7 @@ const reviewModel = {
      * @returns {{review_id: number, product_id: number, user_id: number, rating: number, comment: string, created_at: Date }[0][]} - Array of reviews on index 0.
      */
     getProductReviews: async (productId) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `select reviews.* from reviews
                         inner join products on products.product_id = reviews.product_id
                     where products.product_id = ?`
@@ -45,7 +45,7 @@ const reviewModel = {
      * @returns - Query result on index 0.
      */
     updateProductReview: async (productId, reviewId, review) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `update reviews set rating = coalesce(?, rating), comment = coalesce(?, comment) where product_id = ? and review_id = ?`
 
         return await conn.query(sql, [...review, productId, reviewId])
@@ -60,7 +60,7 @@ const reviewModel = {
      * @returns - Query result on index 0.
      */
     deleteReviewById: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `delete from reviews where review_id = ?`
 
         return await conn.query(sql, [id])
