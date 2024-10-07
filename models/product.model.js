@@ -1,4 +1,4 @@
-const connection = require('../config/database')
+const connectDatabase = require('../config/database')
 
 
 const productModel = {
@@ -10,7 +10,7 @@ const productModel = {
      * @returns - Result of query, access on index 0 to get details.
      */
     insert: async (values) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'insert into products(name, description, image_url, price, quantity) values(?, ?, ?, ?, ?)'
 
         return await conn.query(sql, values)
@@ -25,7 +25,7 @@ const productModel = {
      * @returns - Product array on index 0.
      */
     readById: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'select * from products where id = ?'
 
         return await conn.query(sql, [id])
@@ -38,7 +38,7 @@ const productModel = {
      * @returns - Product array on index 0.
      */
     readAll: async (limit = 100) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'select * from products limit ?'
 
         return await conn.query(sql, [limit])   
@@ -51,7 +51,7 @@ const productModel = {
      * @returns {{product_id: number, name: string, description: string, price: number, quantity: number, created_at: Date, updated_at: Date, images: {url: string, attribute: string}[], reviews: {userId: number, username: string, rating: number, comment: string}[] }[0][]} - Query result on index 0.
      */
     readDetailsImagesReviewsById: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `select products.*,
             JSON_ARRAYAGG(
                 JSON_OBJECT(
@@ -89,7 +89,7 @@ const productModel = {
      * @returns - Query result on index 0.
      */
     updateById: async (id, fields) => {
-        const conn = await connection
+        const conn = await connectDatabase()
 
         // default to null
         const { name = null, description = null, imageUrl = null, price = null, quantity = null } = fields
@@ -112,7 +112,7 @@ const productModel = {
      * @returns - Query result on index 0.
      */
     deleteById: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'delete from products where product_id = ?'
 
         return await conn.query(sql, [id])

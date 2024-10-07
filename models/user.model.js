@@ -1,4 +1,4 @@
-const connection = require('../config/database')
+const connectDatabase = require('../config/database')
 
 
 const userModel = {
@@ -10,7 +10,7 @@ const userModel = {
      * @returns - Result of query on index 0.
      */
     insert: async (values) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'insert into users(username, email, password, firstname, lastname, phone, role) values(?, ?, ?, ?, ?, ?, ?)'
 
         return await conn.query(sql, values)
@@ -25,7 +25,7 @@ const userModel = {
      * @returns - User array on index 0.
      */
     readById: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'select * from users where user_id = ?'        
         
         return await conn.query(sql, [id])
@@ -39,7 +39,7 @@ const userModel = {
      * @returns {{ user_id: number, username: string, email: string, password: string, firstname: string, lastname: string, phone: string, role: string, created_at: Date, updated_at: Date  }[]} - An array of user objects length 1.
      */
     readByUsernamePassword: async (username, password) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `select * from users where username = ? and password = ?`
 
         return await conn.query(sql, [username, password])
@@ -52,7 +52,7 @@ const userModel = {
      * @returns {{ user_id: number, username: string, email: string, password: string, firstname: string, lastname: string, phone: string, role: string, created_at: Date, updated_at: Date  }[]} - An array of user objects.
      */
     readAll: async (limit = 100) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'select * from users limit = ?'
       
         return await conn.query(sql, [limit])
@@ -68,7 +68,7 @@ const userModel = {
      * @returns - Result of query.
      */
     updateById: async (id, fields) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         
         // default unupdated values to null
         const { username = null, email = null, password = null, firstname = null, lastname = null, phone = null, role = null } = fields
@@ -91,7 +91,7 @@ const userModel = {
      * @returns - Result of delete query.
      */
     deleteById: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'delete from users where user_id = ?'
       
         return await conn.query(sql, [id])

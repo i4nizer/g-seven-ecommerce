@@ -1,4 +1,4 @@
-const connection = require('../config/database')
+const connectDatabase = require('../config/database')
 
 
 const orderModel = {
@@ -10,7 +10,7 @@ const orderModel = {
      * @returns - Query result on index 0.
      */
     createOrder: async (values) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'insert into orders(user_id, total_price, status) values(?, ?, ?)'
 
         return await conn.query(sql, values)
@@ -24,7 +24,7 @@ const orderModel = {
      * @returns - Query result on index 0.
      */
     addProductsToOrder: async (orderId, product) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'insert into order_items(order_id, product_id, quantity, price) values(?, ?, ?, ?)'
 
         return await conn.query(sql, [orderId, ...product])
@@ -39,7 +39,7 @@ const orderModel = {
      * @returns {{product_id: number, name: string, description: string, image_url: string, price: number, quantity: number, created_at: Date, updated_at: Date}[][]} - Array of products on index 0.
      */
     getOrderProducts: async (orderId) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `select products.* from products
                         inner join order_items on order_items.product_id = products.product_id
                         inner join orders on orders.order_id = order_items.order_id
@@ -59,7 +59,7 @@ const orderModel = {
      * @returns - Query result on index 0.
      */
     updateProductQuantity: async (orderId, productId, quantity) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `update order_items set quantity = ? where order_id = ? and product_id = ?`
 
         return await conn.query(sql, [quantity, orderId, productId])
@@ -75,7 +75,7 @@ const orderModel = {
      * @returns - Query result on index 0.
      */
     removeProductFromOrder: async (orderId, productId) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `delete from order_items where order_id = ? and product_id = ?`
 
         return await conn.query(sql, [orderId, productId])
