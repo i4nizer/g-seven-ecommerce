@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <title>Error Occured</title>
+</head>
+<body>
+    
+    <%- include('../partials/header') %>
+    
+    <section id="database-error-section">
+        <h1>Error Occurred</h1>
+        <a href="/">Go Back Home</a>
+        <div>
+            <p><strong>Error Code: </strong><%= error.code ?? 'None' %></p>
+            <p><strong>Message: </strong><%= error.message ?? 'None' %></p>
+            <strong>Stack Trace: </strong>
+            <pre><%= error.stack ?? 'None' %></pre>
+        </div>
+    </section>
+
+    <style>
+        #database-error-section {
+            width: 100%;
+            height: auto;
+            min-height: calc(100dvh - 60px);
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #database-error-section a {
+            margin: 10px 0 0 0;
+            font-size: large;
+            font-weight: bolder;
+        }
+
+        #database-error-section h1 {
+            font-size: 5dvw;
+            color: var(--gray);
+        }
+        
+        #database-error-section div {
+            width: calc(90% - 10dvw);
+            max-width: calc(90% - 10dvw);
+            height: auto;
+            padding: 2dvw 5dvw;
+            
+            gap: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+
+</body>
+</html>

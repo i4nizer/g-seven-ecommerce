@@ -11,7 +11,7 @@ const productController = {
         // render page based on categories and its products
         await categoryModel.readAllCategoriesWithProducts()
             .then(result => res.render('products', { categories: result[0] }))
-            .catch(err => res.status(500).send(err))
+            .catch(err => res.render('errors/error', { error: err }))
     },
 
     // page for product details
@@ -20,7 +20,7 @@ const productController = {
         // render product details
         await productModel.readDetailsImagesReviewsById(req.params.productId)
             .then(result => res.render('product-details', { product: result[0][0] }))   // assume there will always be a product
-            .catch(err => res.status(500).send(err))
+            .catch(err => res.render('errors/error', { error: err }))
     },
 
     // api to create a review
@@ -32,7 +32,7 @@ const productController = {
         // send result
         await reviewModel.createReview(productId, userId, review)
             .then(result => res.send(result[0]))
-            .catch(err => res.status(500).send(err))
+            .catch(err => res.render('errors/error', { error: err }))
     }
 
 }

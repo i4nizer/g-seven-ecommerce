@@ -10,7 +10,7 @@ const cartController = {
         // and send page with result
         await cartModel.readAllCartItemsByUserId(req.userId)
             .then(result => res.render('cart', { cartItems: result[0] }))
-            .catch(err => res.status(500).send(err))
+            .catch(err => res.render('errors/error', { error: err }))
     },
 
 
@@ -30,7 +30,7 @@ const cartController = {
             const addResult = await cartModel.addProductToCart(cartId, productId, quantity)
             res.send(addResult)
 
-        } catch (err) { res.status(500).send(err) }
+        } catch (err) { res.render('errors/error', { error: err }) }
     },
 
 
@@ -46,7 +46,7 @@ const cartController = {
             const updateResult = await cartModel.updateCartItemQuantity(cartItemId, quantity)
             res.send(updateResult)
 
-        } catch (err) { res.status(500).send(err) }
+        } catch (err) { res.render('errors/error', { error: err }) }
     },
 
 
@@ -61,7 +61,7 @@ const cartController = {
             const deleteResult = await cartModel.deleteCartItemById(cartItemId)
             res.send(deleteResult)
 
-        } catch (err) { res.status(500).send(err) }
+        } catch (err) { res.render('errors/error', { error: err }) }
     },
 
 }

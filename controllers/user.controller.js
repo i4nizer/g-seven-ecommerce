@@ -26,7 +26,7 @@ const userController = {
         // send result
         await userModel.insert([username, email, hashedPassword, firstname, lastname, phone, role])
             .then(result => res.redirect('/authentication/users/sign-in'))
-            .catch(err => res.status(500).send(err))
+            .catch(err => res.render('errors/error', { error: err }))
     },
     
     // api to sign-in
@@ -56,7 +56,7 @@ const userController = {
         // check if user exists
         await userModel.readByUsernamePassword(username, hashedPassword)
             .then(onAuth)
-            .catch(err => res.status(500).send(err))
+            .catch(err => res.render('errors/error', { error: err }))
     },
 
 
@@ -71,7 +71,7 @@ const userController = {
         // send result
         await userModel.updateById(id, fields)
             .then(result => res.send(result))
-            .catch(err => res.status(500).send(err))
+            .catch(err => res.render('errors/error', { error: err }))
     },
 
 
@@ -85,7 +85,7 @@ const userController = {
         // send result
         await userModel.deleteById(id)
             .then(result => res.send(result))
-            .catch(err => res.status(500).send(err))
+            .catch(err => res.render('errors/error', { error: err }))
     },
 
 }
