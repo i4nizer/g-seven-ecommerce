@@ -19,13 +19,11 @@ router.use('/cart', cartRoutes)
 
 // home route
 router.get('/', async (req, res) => {
+    
     // render page based on categories and its products
     await require('../models/category.model').readAllCategoriesWithProducts()
         .then(result => res.render('index', { categories: result[0] }))
-        .catch(err => {
-            console.log(typeof err)
-            res.render('errors/error', { error: err })
-        })
+        .catch(err => res.render('errors/error', { error: err }))
 })
 
 // 404 Handler
