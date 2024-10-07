@@ -1,0 +1,30 @@
+<div class="order-history-date-range">
+    <input type="date" id="order-history-since" value="2023-01-01">
+    <span>To</span>
+    <input type="date" id="order-history-until" value="2024-01-01">
+</div>
+
+<style>
+.order-history-date-range {
+    width: 30%;
+    height: 100%;
+
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.order-history-date-range input[type="date"] {
+    width: fit-content;
+    min-width: fit-content;
+    height: 90%;
+    padding: 0 1dvw;
+    
+    border: 1px solid var(--light-gray);
+}
+
+.order-history-date-range input[type="date"]:hover {
+    border: 1px solid var(--gray);
+}
+</style>

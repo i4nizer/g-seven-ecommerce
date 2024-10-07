@@ -1,10 +1,11 @@
 const orderHistoryModel = require('../models/order-history.model');
 
 const orderHistoryController = {
+
     getOrderHistoryPage: async (req, res) => {
         try {
-            const userId = req.user.id; // Get the user ID from the request
-            const orders = await orderHistoryModel.getAllOrdersByUser(userId);
+            const userId = req.userId; // Get the user ID from the request
+            const orders = await orderHistoryModel.getAllOrdersByUserId(userId);
             
             // Pass 'orders' and a 'message' variable to the view
             const message = orders.length === 0 ? 'No orders found.' : null;

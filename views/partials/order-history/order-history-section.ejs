@@ -1,0 +1,46 @@
+<section class="order-history-section">
+    <h1>Order History</h1>
+    <%- include('order-history-control-head') %>
+    <div class="order-history-list-box">
+        
+        <%# Order History Items Here %>
+        <%- include('order-history-item') %>
+        
+    </div>
+</section>
+
+<style>
+.order-history-section {
+    width: 100%;
+    height: auto;
+    min-height: calc(100dvh - 60px);
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}   
+
+.order-history-section h1 {
+    width: calc(100% - 10dvw);
+    height: 60px;
+    padding: 20px 5dvw 0 5dvw;
+
+    font-size: 40px;
+    align-content: center;
+}
+
+.order-history-list-box {
+    width: calc(100% - 4dvw);
+    height: auto;
+    min-height: calc(100dvh - 60px - 80px - 50px - 4dvw);
+    padding: 2dvw;
+
+    overflow: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+</style>

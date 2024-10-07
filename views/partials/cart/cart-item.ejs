@@ -8,9 +8,9 @@
     <h3 class="product-name"><%- product.name %></h3>
     <button class="remove-btn" onclick="onRemoveCartItem(`<%- cartItem.id %>`)">Remove</button>
     <div class="quantity-box">
-        <span onclick="onCartItemQuantityChange(`<%- cartItem.id %>`, false)" class="minus-icon"><%- include('../svgs/minus') %></span>
+        <span onclick="onCartItemQuantityChange(`<%- cartItem.id %>`, false)" class="minus-icon"><%- include('../../svgs/minus') %></span>
         <input oninput="onCartItemQuantityInput(`<%- cartItem.id %>`, this)" class="quantity" type="text" placeholder="1" value="<%- cartItem.quantity %>">
-        <span onclick="onCartItemQuantityChange(`<%- cartItem.id %>`, true)" class="plus-icon"><%- include('../svgs/plus') %></span>
+        <span onclick="onCartItemQuantityChange(`<%- cartItem.id %>`, true)" class="plus-icon"><%- include('../../svgs/plus') %></span>
     </div>
     <span class="price">Price: Php <%- product.price %></span>
     <span class="total-price">Total: Php <%- cartItem.quantity * product.price %></span>

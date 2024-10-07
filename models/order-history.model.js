@@ -1,14 +1,15 @@
-const connection = require('../config/database');
+const connectDatabase = require('../config/database');
 
 const orderHistoryModel = {
+    
     /**
      * Get all orders by user ID.
      * 
      * @param {string} userId - ID of the user to get their order history.
      * @returns {Promise<Array>} - List of orders.
      */
-    getAllOrdersByUser: async (userId) => {
-        const conn = await connection; // Ensure this returns a valid database connection
+    getAllOrdersByUserId: async (userId) => {
+        const conn = await connectDatabase(); // Ensure this returns a valid database connection
         const sql = `
             SELECT orders.*, order_items.*, products.*
             FROM orders
