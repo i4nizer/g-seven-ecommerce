@@ -2,7 +2,7 @@
     <a class="username" href="/users/<%- review.userId %>"><%- review.username %></a>
     <div class="rating-box">
         <% for (let i = 0; i < review.rating; i++) { %>
-            <%- include('../svgs/star-full') %>
+            <%- include('../../svgs/star-full') %>
         <% } %>
     </div>
     <p class="comment"><%- review.comment %></p>
