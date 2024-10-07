@@ -1,0 +1,22 @@
+<div class="order-list-box">
+    <%- include('order-item') %>
+</div>
+
+<style>
+    .order-item-details {
+        justify-content: space-between;
+        width: 100%;
+        padding: 20px 0;
+    }
+    .order-item-product-image {
+        width: 100px;
+        height: 100px;
+    }
+    .order-item-info, .order-item-status-info {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 20px;
+    }
+</style>

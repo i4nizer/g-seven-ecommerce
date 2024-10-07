@@ -1,0 +1,79 @@
+<div class="order-item">
+    <%- include('order-item-header') %>
+    <%- include('order-item-action') %>
+    <%- include('order-item-product') %>
+</div>
+    
+    <div class="order-item-footer">
+        <span class="order-item-total-price">Total Price: Php 120</span>
+        <div class="order-item-buttons">
+            <button class="show-invoice-btn">Show Invoice</button>
+            <button class="buy-now-btn">Buy Now</button>
+        </div>
+    </div>
+    
+    <style>
+        .show-invoice-btn, .buy-now-btn {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .show-invoice-btn {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-right: 10px; 
+        }
+        .show-invoice-btn:hover {
+            background-color: #f5f5f5; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+            border-color: #bbb;
+        }
+    
+        .buy-now-btn {
+            background-color: #f9333b; 
+            color: white; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        .buy-now-btn:hover {
+            background-color: #f9333b; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+        }
+    
+        .order-item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #eaeaea;
+        }
+    
+        .order-item-buttons {
+            display: flex;
+            gap: 10px; 
+        }
+
+        .order-item-total-price {
+            font-weight: bold;
+            font-size: 18px;
+        }
+     .order-item {
+        display: flex;
+        flex-direction: column;
+        padding: 30px; 
+        margin-bottom: 30px; 
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100vw; 
+        max-width: 1200px;
+        margin: 100px auto 20px;
+    }
+</style>
