@@ -1,4 +1,4 @@
-const connection = require('../config/database')
+const connectDatabase = require('../config/database')
 
 
 const cartModel = {
@@ -10,7 +10,7 @@ const cartModel = {
      * @returns - Query result on index 0.
      */
     createCart: async (userId) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'insert into cart(user_id) values(?)'
 
         return await conn.query(sql, [userId])
@@ -25,7 +25,7 @@ const cartModel = {
      * @returns - Query result on index 0.
      */
     addProductToCart: async (cartId, productId, quantity) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'insert into cart_items(cart_id, product_id, quantity) values(?, ?, ?)'
 
         return await conn.query(sql, [cartId, productId, quantity])
@@ -39,7 +39,7 @@ const cartModel = {
      * @returns {{cartId: number}[0][]} - Query result on index 0.
      */
     readCartIdByUserId: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'select cart.cart_id as cartId from cart where cart.user_id = ?'
 
         return await conn.query(sql, [id])
@@ -52,7 +52,7 @@ const cartModel = {
      * @returns {{id: number, quantity: number, product: {id: number, name: string, price: number, stock: number, image: {id: number, url: string, attribute: string}}}[]} - Array of products in the user's cart.
      */
     readAllCartItemsByUserId: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `
             SELECT cart_items.cart_item_id AS id,
             cart_items.quantity,
@@ -92,7 +92,7 @@ const cartModel = {
      * @returns - Query result on index 0.
      */
     updateCartItemQuantity: async (cartItemId, quantity) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'update cart_items set quantity = ? where cart_item_id = ?'
 
         return await conn.query(sql, [quantity, cartItemId])
@@ -108,7 +108,7 @@ const cartModel = {
      * @returns - Query result on index 0.
      */
     deleteCartItemById: async (cartItemId) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'delete from cart_items where cart_item_id = ?'
 
         return await conn.query(sql, [cartItemId])

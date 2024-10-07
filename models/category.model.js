@@ -1,4 +1,4 @@
-const connection = require('../config/database')
+const connectDatabase = require('../config/database')
 
 
 const categoryModel = {
@@ -10,7 +10,7 @@ const categoryModel = {
      * @returns - Query result on index 0.
      */
     createCategory: async (values) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'insert into category(name, description) values(?, ?)'
 
         return await conn.query(sql, values)
@@ -24,7 +24,7 @@ const categoryModel = {
      * @returns - Query result on index 0.
      */
     addProductToCategory: async (categoryId, productId) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'insert into category_products(category_id, product_id) values(?, ?)'
 
         return await conn.query(sql, [categoryId, productId])
@@ -39,7 +39,7 @@ const categoryModel = {
      * @returns {{id: number, name: string, products: {id: number, name: string, images: {imageUrl: string, attribute}[], price: number, description: string}[] }[]} - Query result on index 0.
      */
     readAllCategoriesWithProducts: async (limit = 100) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = `SELECT 
             categories.category_id AS id, 
             categories.name,
@@ -82,7 +82,7 @@ const categoryModel = {
      * @returns - Query result on index 0.
      */
     updateCategoryById: async (id, fields) => {
-        const conn = await connection
+        const conn = await connectDatabase()
 
         // default to null
         const { name = null, description = null } = fields
@@ -106,7 +106,7 @@ const categoryModel = {
      * @returns - Query result on index 0.
      */
     removeProductFromCategory: async (categoryId, productId) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'delete from category_products where category_id = ? and product_id = ?'
 
         return await conn.query(sql, [categoryId, productId])
@@ -119,7 +119,7 @@ const categoryModel = {
      * @returns - Query result on index 0.
      */
     deleteCategoryById: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'delete from categories where category_id = ?'
 
         return await conn.query(sql, [id])

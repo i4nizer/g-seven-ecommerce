@@ -8,7 +8,16 @@ const credentials = {
     database: 'g_seven_ecommerce'
 }
 
-const connectDatabase = async () => await mysql2.createConnection(credentials)
+// use only one connection
+let connection = null;
+
+/**
+ * This function connects to the database and returns the connection.
+ * This will only return existing connection if there already is.
+ * 
+ * @returns Existing database connection.
+ */
+const connectDatabase = async () => connection ??= await mysql2.createConnection(credentials)
 
 
-module.exports = connectDatabase()
+module.exports = connectDatabase

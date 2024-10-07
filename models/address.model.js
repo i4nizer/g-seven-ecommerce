@@ -1,4 +1,4 @@
-const connection = require('../config/database')
+const connectDatabase = require('../config/database')
 
 
 const addressModel = {
@@ -10,7 +10,7 @@ const addressModel = {
      * @returns - Result of query, access on index 0 to get details.
      */
     insert: async (values) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'insert into addresses(user_id, address, city, state, postal_code, country) values(?, ?, ?, ?, ?, ?)'
 
         return await conn.query(sql, values)
@@ -25,7 +25,7 @@ const addressModel = {
      * @returns - Address array on index 0.
      */
     readAllByUserId: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'select * from addresses where user_id = ?'
 
         return await conn.query(sql, [id])
@@ -41,7 +41,7 @@ const addressModel = {
      * @returns - Query result on index 0.
      */
     updateById: async (id, fields) => {
-        const conn = await connection
+        const conn = await connectDatabase()
 
         // default to null
         const { address = null, city = null, state = null, postalCode = null, country = null } = fields
@@ -64,7 +64,7 @@ const addressModel = {
      * @returns - Query result on index 0.
      */
     deleteById: async (id) => {
-        const conn = await connection
+        const conn = await connectDatabase()
         const sql = 'delete from addresses where address_id = ?'
 
         return await conn.query(sql, [id])
