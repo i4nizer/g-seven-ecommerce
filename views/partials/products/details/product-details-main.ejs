@@ -8,10 +8,29 @@
     
     <span class="quantity">Stocks: <%- product.quantity %></span>
     <span class="price">Php <%- product.price %></span>
-    <button class="add-to-cart-btn">Add To Cart</button>
+    <button onclick="onAddToCart(`<%- product.product_id %>`)" class="add-to-cart-btn">Add To Cart</button>
 
     <%- include('product-reviews') %>
 </div>
+
+<script>
+// post product to add to cart
+const onAddToCart = async (productId) => {
+    
+    // send product id to cart
+    await fetch('/cart', {
+        method: 'POST',
+        body: JSON.stringify({ productId: productId, quantity: 1 }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(async (res) => {
+
+        // TODO: trigger toast message to display added to cart
+        if (res.ok) alert('Product added to cart.')
+    })
+    .catch(err => console.log(err))
+}
+</script>
 
 <style>
 #product-details-main {
