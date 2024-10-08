@@ -1,0 +1,75 @@
+<div id="product-search-bar">
+    <label for="search">Search: </label>
+    <input oninput="onProductSearch(this)" type="search" name="search" id="search">
+</div>
+
+<script>
+const category = `
+    <div class="category">
+        <h3># category.name </h3>
+        <div class="products-box">
+
+            
+
+        </div>
+    </div>
+`
+
+const productCard = `
+    <div class="product-card">
+        <div class="image-box">
+            <img src=" product.images[0].url " alt="Image">
+        </div>
+        <div class="detail-box">
+            <span class="name"> product.name </span>
+            <span class="price">Php  product.price </span>
+        </div>
+        <div class="pop-up-box">
+            <a class="add-to-cart-btn" onclick="onAddToCart( product.id )">Add To Cart</a>
+            <a class="view-details-btn" href="/products/ product.id ">View Details</a>
+        </div>
+    </div >
+`
+
+// ask server for search
+const onProductSearch = async (inputEl) => {
+
+    // post search to receive details
+    await fetch('/products/search', {
+        method: 'POST',
+        body: JSON.stringify({ searchParam: inputEl.value }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        // TODO: create category and product DOM elements
+        console.log(data)
+    })
+    .catch(err => console.log(err))
+}
+
+</script>
+
+<style>
+#product-search-bar {
+    width: 100%;
+    height: 80px;
+
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#product-search-bar label[for="search"] {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#product-search-bar input[type="search"] {
+    width: 300px;
+    height: 40px;
+    padding: 0 10px;
+}
+</style>

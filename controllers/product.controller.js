@@ -23,6 +23,15 @@ const productController = {
             .catch(err => res.render('errors/error', { error: err }))
     },
 
+    // api to get product details
+    postSearchProduct: async (req, res) => {
+
+        // send product details
+        await categoryModel.readCategoriesWithProductsByName(req.body.searchParam)
+            .then(result => res.send(result[0]))
+            .catch(err => res.render('errors/error', { error: err }))
+    },
+
     // api to create a review
     postProductReview: async (req, res) => {
         const productId = req.body.productId

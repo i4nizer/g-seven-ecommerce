@@ -7,6 +7,7 @@ const userMiddleware = require('../middlewares/user.middleware')
 router.route('/')
     .get(productController.getProductsPage)
 
+router.post('/search', productController.postSearchProduct)
 router.route('/review')
     .post(userMiddleware.validateLoginToken, productController.postProductReview)
 
