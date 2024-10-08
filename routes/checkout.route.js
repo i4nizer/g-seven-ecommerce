@@ -4,9 +4,9 @@ const checkoutController = require('../controllers/checkout.controller');
 const userMiddleware = require('../middlewares/user.middleware')
 
 
-// POST route to submit payment address
-router.get('/', checkoutController.getCheckoutPage)
-router.post('/submit_payment_address', checkoutController.submitPaymentAddress);
+router.route('/')
+    .get(checkoutController.getCheckoutPage)
+    .post(checkoutController.submitPaymentAddress);
 
 
 module.exports = router;
