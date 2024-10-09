@@ -1,4 +1,4 @@
-<div class="category">
+<div class="product-category">
     <h3>#<%- category.name %></h3>
     <div class="products-box">
         
@@ -34,7 +34,7 @@ const onAddToCart = async (productId) => {
 
 <% if (key == 0) { // avoid duplicate %>
 <style>
-.category {
+.product-category {
     width: 100%;
     height: fit-content;
     padding: 2dvw 0;
@@ -48,7 +48,7 @@ const onAddToCart = async (productId) => {
     background-color: var(--white);
 }
 
-.category h3 {
+.product-category h3 {
     width: 100%;
     height: 50px;
 
@@ -56,7 +56,7 @@ const onAddToCart = async (productId) => {
     text-align: center;
 }
 
-.category .products-box {
+.product-category .products-box {
     width: calc(100% - 10dvw);
     height: fit-content;
     padding: 1dvw 5dvw;
